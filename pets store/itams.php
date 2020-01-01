@@ -34,11 +34,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="landingpage.html">Pits Store</a>
+        <a class="navbar-brand" href="landingpage.php">Pits Store</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="page1.html">Home</a></li>
+          <li class="active"><a href="page1.php">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="">My Cart</a></li>
         </ul>
@@ -47,7 +47,7 @@
             $a= "Welcome, " . $_SESSION['username'] . "!";
             echo "<li class='f'>".$a."</li>";
         ?> 
-        <li><a href="page1.php">Log out  <i class="glyphicon glyphicon-share"></i></a></li>
+        <li><a href="logout.php">Log out  <i class="glyphicon glyphicon-share"></i></a></li>
       <?php } else { ?> 
           <li><a href="sign up.php">Signup  <i class="fa fa-user-plus"></i></a></li>
           <li><a href="log in.php">Login  <i class="fa fa-user"></i></a></li>
@@ -69,7 +69,7 @@
         <div class="thumbnail">
           <p><center><?php echo $row["typename"]; ?></center></p>
           <img src="https://images.unsplash.com/photo-1575327513944-071d262e2849?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"><h4> <?php echo $row["price"] ?></h4>
-         <center> <button type="button" class="btn btn-success" >Add to cart</button></center>
+         <center> <button type="button" onclick="location.href='addtocart.php'" class="btn btn-success" >Add to cart</button></center>
     <center>  <button type="button" class="btn btn-danger">Details</button></center>
 
         </div>

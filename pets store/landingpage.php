@@ -57,7 +57,7 @@ hr {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="landingpage.html">Pits Store</a>
+      <a class="navbar-brand" href="landingpage.php">Pits Store</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -70,7 +70,7 @@ hr {
             $a= "Welcome, " . $_SESSION['username'] . "!";
             echo "<li class='f'>".$a."</li>";
         ?> 
-        <li><a href="page1.php">Log out  <i class="glyphicon glyphicon-share"></i></a></li>
+        <li><a href="logout.php">Log out  <i class="glyphicon glyphicon-share"></i></a></li>
       <?php } else { ?> 
           <li><a href="sign up.php">Signup  <i class="fa fa-user-plus"></i></a></li>
           <li><a href="log in.php">Login  <i class="fa fa-user"></i></a></li>
