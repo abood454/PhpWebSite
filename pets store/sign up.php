@@ -2,20 +2,33 @@
 <html>
 <head>
   <?php
+    $n=true;
+     $e=true;
+     $p=true;
     $mysqli = new mysqli("localhost", "abood", "abood123", "mydb");
     if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
     }
     session_start();
     if(isset($_POST["sub"])){
-
+      
      $name =$_POST["fname"];
+     $sql ="select * from user where name ='".$name."'";
+         $result = $mysqli->query($sql);
+        if($result->num_rows>0)$n=false;
      $last=$_POST["lname"];
      $email =$_POST["email"];
+      $sql ="select * from user where email ='".$email."'";
+         $result = $mysqli->query($sql);
+        if($result->num_rows>0)$e=false;
      $pass =$_POST["pass"];
       $age =$_POST["age"];
       $phone =$_POST["phone"];
+       $sql ="select * from user where phone ='".$phone."'";
+         $result = $mysqli->query($sql);
+        if($result->num_rows>0)$p=false;
       $sex =$_POST["sex"];
+      if($e&&$n&&$p){
       $query = "SELECT MAX(iduser) FROM user";
          $result = mysqli_query($mysqli,  $query);
         $row = mysqli_fetch_row($result);
@@ -23,6 +36,7 @@
        $sql = "INSERT INTO user (iduser, name,password, email,phone,sex,age)
        VALUES ('".$f."', '".$name."' , '".$pass."','".$email."','".$phone."','".$sex."','".$age."')";
            $result = mysqli_query($mysqli,$sql);
+         }
 
 }
      
@@ -65,6 +79,9 @@ html {
 .f{
     margin-top: 15px;
   }
+  h4{
+    color:red;
+  }
 
 </style>
 
@@ -102,9 +119,12 @@ html {
     </div>
    </nav>
   
-<?php     if(!isset($_POST["sub"])) { ?>
+<?php     if(!isset($_POST["sub"])||!$p||!$n||!$e) { ?>
 
 <div class ="ab">
+<?php if(!$n)echo "<h4>this name is used by aouther uesr</h4>"?>
+<?php if(!$e)echo "<h4>this email is used by aouther uesr</h4>"?>
+<?php if(!$p)echo "<h4>this phone is used by aouther uesr</h4>"?>
 
 <form action="sign up.php" method="post">
   <div class="form-group">
@@ -146,7 +166,7 @@ html {
   <button type="submit" class="btn btn-default" name="sub">Submit</button>
 </form>   
   </div>
-<?php } else{ ?>
+<?php } else { ?>
   <div id ="h">
 <div class="jumbotron">
   <h1 class="display-4">Success!</h1>
